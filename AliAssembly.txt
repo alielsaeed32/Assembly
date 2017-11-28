@@ -1,0 +1,338 @@
+pb1
+.586
+.MODEL FLAT
+INCLUDE io.h
+.STACK 4096
+.DATA
+	Num1 DWORD  ?
+	Num2 DWORD  ?
+	Num3 DWORD  ?
+	Message1 BYTE "Please enter integer x: ",0
+	Message2 BYTE "Please enter integer y: ",0
+	Message3 BYTE "Please enter integer z: ",0
+	inp BYTE 40 DUP (?)
+	
+	resultlb1 BYTE "the value is :",0
+	;result BYTE 11 DUP (?),0
+.CODE
+MainProc PROC
+	input Message1,inp,40
+	atod inp
+	mov Num1,eax
+	input Message2,inp,40
+	atod inp
+	mov Num2,eax
+	add eax,Num1
+	mov Num2,eax
+	input Message3,inp,40
+	atod inp
+	mov Num3,eax
+	mov eax,Num2
+	sub eax,Num3
+	sub eax,Num3
+	add eax,1
+	mov Num3,eax
+	neg Num3
+	mov eax,Num3
+	dtoa inp,eax
+	output resultlb1,inp
+	mov eax,0
+	ret
+MainProc ENDP
+END
+--------------------------------------------------------
+pb2
+.586
+.MODEL FLAT
+INCLUDE io.h
+.STACK 4096
+.DATA
+    prompt1 BYTE "enter first number",0
+	prompt2 BYTE "enter second number",0
+	prompt3 BYTE "enter third number",0
+	result BYTE "result is:",0
+	x DWORD ?
+	y DWORD ?
+	z DWORD ?
+	inp BYTE 40 DUP(?)
+	re DWORD ?
+.CODE
+ MainProc PROC
+     input prompt1,inp,40
+	 atod inp
+	 mov x,eax
+
+	 input prompt2,inp,40
+	 atod inp
+	 add eax,x
+	 IMUL eax,2
+	 mov y,eax
+	 mov eax,0
+
+	 input prompt3,inp,eax
+	 atod inp
+	 add eax,y
+	
+	 
+	 dtoa re,eax
+	 output result,re
+ ret
+ MainProc ENDP
+END
+----------------------------------------------------------
+pb3
+.586
+.MODEL FLAT
+INCLUDE io.h
+.STACK 4096
+.DATA
+    prompt1  BYTE "enter width",0
+	prompt2 BYTE "enter length",0
+	resultlab BYTE "perimeter",0
+	inp BYTE 40 DUP(?)
+	num dword ?
+	result BYTE 11 DUP(?),0
+	
+.CODE
+   MainProc PROC
+     input prompt1,inp,40
+	 atod inp
+	 mov num,eax
+
+	 input prompt2,inp,40
+	 atod inp
+	 add eax,num
+	 IMUL eax,2
+
+	 dtoa result,eax
+	 output resultlab,result
+	 mov eax,0
+   ret
+   MainProc ENDP
+END
+---------------------------------------------------------
+pb4
+.586
+.MODEL FLAT
+INCLUDE io.h
+.STACK 4096
+.DATA
+	var1   DWORD ?
+	var2   DWORD ?
+	var3   DWORD ?
+	var4   DWORD ?
+	var5   DWORD ?
+	var6   DWORD ?
+	prompt1 BYTE "Enter the number of pennies",0
+	prompt2 BYTE "Enter the number of nickels",0
+	prompt3 BYTE "Enter the number of dimes",0
+	prompt4 BYTE "Enter the number of quarters",0
+	prompt5 BYTE "Enter the number of fifty-cent pieces",0
+	prompt6 BYTE "Enter the number of dollar coins",0
+	asd    BYTE 40 DUP (?)
+	lbl    BYTE "the total value of the coins",0
+	Result BYTE 11 DUP (?)
+		   BYTE " dollars"
+	Res	   BYTE 11 DUP (?)
+	       BYTE " pennies"
+.CODE
+_MainProc PROC
+	input prompt1,asd,40
+	atod  asd
+	mov  var1,eax
+
+	input prompt2,asd,40
+	atod  asd
+	imul  eax,5
+	mov  var2,eax
+
+	input prompt3,asd,40
+	atod  asd
+	imul  eax,10
+	mov  var3,eax
+
+	input prompt4,asd,40
+	atod  asd
+	imul  eax,25
+	mov  var4,eax
+
+	input prompt5,asd,40
+	atod  asd
+	imul  eax,50
+	mov  var5,eax
+
+	input prompt6,asd,40
+	atod  asd
+	imul  eax,100
+	mov  var6,eax
+
+	add eax,var1
+	add eax,var2
+	add eax,var3
+	add eax,var4
+	add eax,var5
+
+	cdq
+	mov  ebx,100
+	idiv ebx
+	dtoa Result,eax
+	dtoa Res,edx
+	output lbl,Result
+
+	mov eax,0
+	ret
+_MainProc ENDP
+END
+--------------------------------------------------------
+pb5
+.586
+.MODEL FLAT
+INCLUDE io.h
+.STACK 4096
+.DATA
+    prompt1 BYTE "enter grade 1",0
+	prompt2 BYTE "enter grade 2",0
+	prompt3 BYTE "enter grade 3",0
+	prompt4 BYTE "enter grade 4",0
+	resultlab BYTE "sum=",0
+	resultav BYTE "average",0
+	inp BYTE 40 DUP(?)
+
+    res BYTE 30 DUP(?)
+    grd1 DWORD ?
+	
+.CODE
+  MainProc PROC
+   input prompt1,inp,40
+   atod inp
+   mov grd1,eax
+
+   input prompt2,inp,40
+   atod inp
+   add grd1,eax
+
+   input prompt3,inp,40
+   atod inp
+   add grd1,eax
+
+   input prompt4,inp,40
+   atod inp
+   add eax,grd1
+
+   mov bx,4
+   idiv bx
+   
+   dtoa res,eax
+   output resultlab,res
+
+   
+
+  ret
+  MainProc ENDP
+END
+------------------------------------------------------
+pb6
+.586
+.MODEL FLAT
+INCLUDE io.h
+.STACK 4096
+.DATA
+	g1 DWORD ?
+	g2 DWORD ?
+	g3 DWORD ?
+	g4 DWORD ?
+	w1 DWORD ?
+	w2 DWORD ?
+	w3 DWORD ?
+	w4 DWORD ?
+	wg1 DWORD ?
+	wg2 DWORD ?
+	wg3 DWORD ?
+	wg4 DWORD ?
+	tem DWORD ?
+	tem2 DWORD ?
+	str1    BYTE "Enter the first grade",0
+	str2    BYTE "Enter the first weight",0
+	str3    BYTE "Enter the second grade",0
+	str4    BYTE "Enter the second weight",0
+	str5    BYTE "Enter the third grade",0
+	str6    BYTE "Enter the third weight",0
+	str7    BYTE "Enter the fourth grade",0
+	str8    BYTE "Enter the fourth weight",0
+	prompt  BYTE 40 DUP (?)
+	Result1 BYTE "weighted sum:",0
+	Result2 BYTE "sum of weights:",0
+	Result3 BYTE "weighted average:",0
+	res1    BYTE 11 DUP (?)
+	res2    BYTE 11 DUP (?)
+	res3    BYTE 11 DUP (?)
+.CODE
+_MainProc PROC
+	input str1,prompt,40       ;entering first grade
+	atod  prompt
+	mov   g1,eax
+
+	input str2,prompt,40       ;entering first weight
+	atod  prompt
+	mov   w1,eax
+	imul  eax,g1
+	mov   wg1,eax
+
+	input str3,prompt,40       ;entering second grade
+	atod  prompt
+	mov   g2,eax
+
+	input str4,prompt,40       ;entering second weight
+	atod  prompt
+	mov   w2,eax
+	imul  eax,g2
+	mov   wg2,eax
+
+	input str5,prompt,40       ;entering third grade
+	atod  prompt
+	mov   g3,eax
+
+	input str6,prompt,40       ;entering third weight
+	atod  prompt
+	mov   w3,eax
+	imul  eax,g3
+	mov   wg3,eax
+
+	input str7,prompt,40       ;entering fourth grade
+	atod  prompt
+	mov   g4,eax
+
+	input str8,prompt,40       ;entering fourth weight
+	atod  prompt
+	mov   w4,eax
+	imul  eax,g4
+	mov   wg4,eax
+
+	add   eax,wg1
+	add   eax,wg2
+	add   eax,wg3
+	mov   tem,eax
+
+	dtoa res1,eax
+	output Result1,res1
+
+	mov  eax,w1
+	add  eax,w2
+	add  eax,w3
+	add  eax,w4
+
+	dtoa res2,eax
+	output Result2,res2
+	
+	cdq
+	mov tem2,eax
+	mov eax,tem
+	idiv tem2 
+	
+	dtoa res3,eax
+	output Result3,res3
+
+	mov   eax,0
+	ret
+_MainProc ENDP
+END
